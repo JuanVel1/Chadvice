@@ -120,16 +120,20 @@ async function connectToWhatsApp() {
 
           const compareMessage = captureMessage.toLocaleLowerCase();
 
-          if (compareMessage === "ping") {
-            await sock.sendMessage(
-              numberWa,
-              {
-                text: "Pong",
-              },
-              {
-                quoted: messages[0],
-              }
-            );
+          if (compareMessage) {
+            await sock
+              .sendMessage(
+                numberWa,
+                {
+                  text: "Ingresa un número a multiplicar :",
+                },
+                {
+                  quoted: messages[0],
+                }
+              )
+              .then((result) => {
+                console.log("result ", result);
+              });
           } else {
             await sock.sendMessage(
               numberWa,
