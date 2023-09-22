@@ -119,6 +119,7 @@ async function connectToWhatsApp() {
           const captureMessage = messages[0]?.message?.conversation;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           let compareMessage = captureMessage.toLocaleLowerCase();
           if (compareMessage === "hola" && step === 0) {
             let opciones = ["1. Ubicacion", "2. Ver productos", "3. Servicios"];
@@ -132,6 +133,8 @@ async function connectToWhatsApp() {
                   opciones[1],
                 footer: "MariangelCell",
 =======
+=======
+>>>>>>> a03d1fa (Actulizando rama con mensaje personalizado)
           const compareMessage = captureMessage.toLocaleLowerCase();
 
           if (compareMessage) {
