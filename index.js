@@ -118,50 +118,17 @@ async function connectToWhatsApp() {
         if (!messages[0]?.key.fromMe) {
           const captureMessage = messages[0]?.message?.conversation;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
           let compareMessage = captureMessage.toLocaleLowerCase();
           if (compareMessage === "hola" && step === 0) {
             let opciones = ["1. Ubicacion", "2. Ver productos", "3. Servicios"];
-            await sock.sendMessage(
-              numberWa,
-              {
-                text:
-                  "¡Bienvenido al Chatbot de MariangelCell! 😊📱\n¡Hola! Soy tu asistente virtual Mari, estoy aquí para ayudarte con todas tus consultas y necesidades relacionadas con nuestros productos y servicios tecnológicos. 🤖\nNo dudes en preguntarme sobre nuestros últimos modelos de celulares 📲, audífonos 🎧, cámaras fotográficas 📷 y periféricos 🖱️. También puedo ayudarte a conocer nuestro inventario actualizado, registrar tus compras en tienda física 🛒, brindarte información sobre nuestros servicios técnicos 🛠️, y mucho más.\nEstoy aquí para hacer tu experiencia con MariangelCell más fácil y conveniente. ¡Así que adelante, pregúntame lo que necesites! 👍\n\nSelecciona una de las opciones : \n\n" +
-                  opciones[0] +
-                  "\n" +
-                  opciones[1],
-                footer: "MariangelCell",
-=======
-=======
->>>>>>> a03d1fa (Actulizando rama con mensaje personalizado)
-          const compareMessage = captureMessage.toLocaleLowerCase();
-
-          if (compareMessage) {
-            await sock
-              .sendMessage(
-                numberWa,
-                {
-                  text: "Ingresa un número a multiplicar :",
-                },
-                {
-                  quoted: messages[0],
-                }
-              )
-              .then((result) => {
-                console.log("result ", result);
-              });
-          } else {
-            await sock.sendMessage(
-              numberWa,
-              {
-                text: "Prueba rama Juan Jose Velasquez",
->>>>>>> 535b729 (Actulizando rama con mensaje personalizado)
-              },
-              {
-                quoted: messages[0],
-              }
-            );
+            await sock.sendMessage(numberWa, {
+              text:
+                "¡Bienvenido al Chatbot de MariangelCell! 😊📱\n¡Hola! Soy tu asistente virtual Mari, estoy aquí para ayudarte con todas tus consultas y necesidades relacionadas con nuestros productos y servicios tecnológicos. 🤖\nNo dudes en preguntarme sobre nuestros últimos modelos de celulares 📲, audífonos 🎧, cámaras fotográficas 📷 y periféricos 🖱️. También puedo ayudarte a conocer nuestro inventario actualizado, registrar tus compras en tienda física 🛒, brindarte información sobre nuestros servicios técnicos 🛠️, y mucho más.\nEstoy aquí para hacer tu experiencia con MariangelCell más fácil y conveniente. ¡Así que adelante, pregúntame lo que necesites! 👍\n\nSelecciona una de las opciones : \n\n" +
+                opciones[0] +
+                "\n" +
+                opciones[1],
+              footer: "MariangelCell",
+            });
             step += 1;
             console.log(step);
           }
@@ -201,10 +168,9 @@ async function connectToWhatsApp() {
         captureMessage = messages[0]?.message?.conversation;
         compareMessage = captureMessage.toLocaleLowerCase();
 
-        if (compareMessage === "1" || compareMessage === "2" && step == 3) {
+        if (compareMessage === "1" || (compareMessage === "2" && step == 3)) {
           console.log("opcion 4");
-            
-          
+
           opciones = [
             "A. Nombre",
             "B. Marca",
@@ -228,7 +194,7 @@ async function connectToWhatsApp() {
 
         captureMessage = messages[0]?.message?.conversation;
         compareMessage = captureMessage.toLocaleLowerCase();
-        
+
         if (compareMessage === "c" && step == 4) {
           console.log("opcion 5");
           opciones = [
