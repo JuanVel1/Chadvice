@@ -108,35 +108,33 @@ async function connectToWhatsApp() {
       return;
     }
   });
+  let step = 0;
 
   sock.ev.on("messages.upsert", async ({ messages, type }) => {
     try {
+      const numberWa = messages[0]?.key?.remoteJid;
+
       if (type === "notify") {
         if (!messages[0]?.key.fromMe) {
           const captureMessage = messages[0]?.message?.conversation;
-          const numberWa = messages[0]?.key?.remoteJid;
 
           const compareMessage = captureMessage.toLocaleLowerCase();
 
-          if (compareMessage) {
-            await sock
-              .sendMessage(
-                numberWa,
-                {
-                  text: "Ingresa un número a multiplicar :",
-                },
-                {
-                  quoted: messages[0],
-                }
-              )
-              .then((result) => {
-                console.log("result ", result);
-              });
+          if (compareMessage === "ping") {
+            await sock.sendMessage(
+              numberWa,
+              {
+                text: "Pong",
+              },
+              {
+                quoted: messages[0],
+              }
+            );
           } else {
             await sock.sendMessage(
               numberWa,
               {
-                text: "Prueba rama Juan Jose Velasquez",
+                text: "Soy un robot",
               },
               {
                 quoted: messages[0],
@@ -152,6 +150,18 @@ async function connectToWhatsApp() {
 
   sock.ev.on("creds.update", saveCreds);
 }
+
+//Funcion para generar el mensaje de pregunta
+const generateMessageQuestion = async (numberWa, message, options) => {
+  totaloptions = "";
+  options.forEach((option) => {
+    totaloptions += option + "\n";
+  });
+
+  await sock.sendMessage(numberWa, {
+    text: message + "\n" + totaloptions,
+  });
+};
 
 const isConnected = () => {
   return sock?.user ? true : false;
